@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   Header,
   HeroSection,
@@ -8,9 +8,11 @@ import {
   ProcessSection,
   ContactSection,
   Footer,
-} from './components';
-import { useLenisScroll, useScrollReveal } from './hooks';
-import './index.css';
+  LoadingScreen,
+  CustomCursor,
+} from "./components";
+import { useLenisScroll, useScrollReveal } from "./hooks";
+import "./index.css";
 
 function App() {
   useLenisScroll();
@@ -19,23 +21,25 @@ function App() {
   // Smooth scrolling support for all anchor links
   useEffect(() => {
     const handleLinkClick = (e) => {
-      const target = e.target.closest('a');
-      if (target && target.getAttribute('href').startsWith('#')) {
+      const target = e.target.closest("a");
+      if (target && target.getAttribute("href").startsWith("#")) {
         e.preventDefault();
-        const id = target.getAttribute('href');
+        const id = target.getAttribute("href");
         const element = document.querySelector(id);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }
     };
 
-    document.addEventListener('click', handleLinkClick);
-    return () => document.removeEventListener('click', handleLinkClick);
+    document.addEventListener("click", handleLinkClick);
+    return () => document.removeEventListener("click", handleLinkClick);
   }, []);
 
   return (
     <div className="min-h-screen bg-white">
+      <LoadingScreen />
+      <CustomCursor />
       <Header />
       <HeroSection />
       <TrustStrip />

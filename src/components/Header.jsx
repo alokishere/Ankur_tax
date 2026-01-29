@@ -1,128 +1,132 @@
-import React from 'react';
-import { Phone, MessageCircle, MapPin, Clock, Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Phone, MessageCircle, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
-  const [isSticky, setIsSticky] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleCall = () => {
-    window.location.href = 'tel:+919956464808';
-  };
-
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/919956464808?text=Hi, I want to know more about your tax services', '_blank');
-  };
+  const navLinks = [
+    { label: "Services", href: "#services" },
+    { label: "Why Us", href: "#why-us" },
+    { label: "Process", href: "#process" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <>
-      {/* Top Info Bar */}
-      <div className="hidden md:block bg-navy text-white py-2 text-sm">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center gap-8">
-          <div className="flex items-center gap-2">
-            <Phone size={16} />
-            <a href="tel:+919956464808" className="hover:text-emerald transition">+91 9956464808</a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Mail size={16} />
-            <a href="mailto:ankulyadav7521@gmail.com" className="hover:text-emerald transition">ankulyadav7521@gmail.com</a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock size={16} />
-            <span>Mon-Fri: 10 AM - 6 PM | Sat: 10 AM - 2 PM</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header */}
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isSticky ? 'bg-white shadow-soft-md' : 'bg-white'
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled ? "py-4" : "py-8"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-navy to-emerald rounded-xl flex items-center justify-center text-white font-bold">
-              ATC
-            </div>
-            <div>
-              <h1 className="font-jakarta font-bold text-lg text-navy">ANKUL TAX</h1>
-              <p className="text-xs text-emerald">Consultancy</p>
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div
+            className={`flex items-center justify-between transition-all duration-500 rounded-[2rem] px-8 py-3 ${
+              isScrolled ? "glass shadow-premium backdrop-blur-xl" : ""
+            }`}
+          >
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-3 group">
+              <div className="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12">
+                ATC
+              </div>
+              <div className="flex flex-col">
+                <span className="font-jakarta font-extrabold text-xl tracking-tight text-navy">
+                  ANKUL TAX
+                </span>
+                <span className="text-[10px] uppercase tracking-widest text-emerald font-bold">
+                  Consultancy
+                </span>
+              </div>
+            </a>
 
-          {/* Navigation */}
-          <nav className="hidden lg:flex gap-8 items-center">
-            {[
-              { label: 'Services', href: '#services' },
-              { label: 'Why Us', href: '#why-us' },
-              { label: 'Process', href: '#process' },
-              { label: 'Contact', href: '#contact' },
-            ].map((item) => (
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-10">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-semibold text-navy/70 hover:text-emerald transition-colors relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald transition-all group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="hidden lg:flex items-center gap-4">
               <a
-                key={item.label}
-                href={item.href}
-                className="text-navy hover:text-emerald transition font-medium text-sm"
+                href="https://wa.me/919956464808"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 text-emerald hover:bg-emerald-light rounded-full transition-colors"
               >
-                {item.label}
+                <MessageCircle size={22} />
               </a>
-            ))}
-          </nav>
+              <button
+                onClick={() => (window.location.href = "tel:+919956464808")}
+                className="btn-premium flex items-center gap-2 group"
+              >
+                <span>Book Consultation</span>
+                <Phone size={18} className="group-hover:animate-bounce" />
+              </button>
+            </div>
 
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleCall}
-              className="hidden md:flex items-center gap-2 btn-primary"
+            {/* Mobile Toggle */}
+            <button
+              className="lg:hidden p-2 text-navy"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <Phone size={18} />
-              Call Now
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleWhatsApp}
-              className="btn-secondary flex md:hidden"
-            >
-              <MessageCircle size={18} />
-            </motion.button>
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Floating Mobile CTA */}
-      <div className="fixed bottom-4 right-4 md:hidden z-40 flex gap-2">
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleCall}
-          className="bg-emerald text-white rounded-full p-4 shadow-soft-lg flex items-center justify-center"
-        >
-          <Phone size={24} />
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleWhatsApp}
-          className="bg-navy text-white rounded-full p-4 shadow-soft-lg flex items-center justify-center"
-        >
-          <MessageCircle size={24} />
-        </motion.button>
-      </div>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 lg:hidden"
+          >
+            <div className="absolute inset-0 bg-white/95 backdrop-blur-xl pt-32 px-10">
+              <div className="flex flex-col gap-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-4xl font-bold text-navy hover:text-emerald transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <div className="h-px bg-navy/10 my-4" />
+                <button
+                  onClick={() => (window.location.href = "tel:+919956464808")}
+                  className="btn-premium w-full flex justify-center items-center gap-4 text-xl"
+                >
+                  <Phone size={24} />
+                  <span>Call Now</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

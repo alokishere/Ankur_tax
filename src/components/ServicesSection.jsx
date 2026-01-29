@@ -1,135 +1,135 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  FileText,
-  IndianRupee,
   Briefcase,
-  Users,
-  Building2,
-  PieChart,
-  CheckCircle,
-  Shield,
-} from 'lucide-react';
+  FileText,
+  ShieldCheck,
+  TrendingUp,
+  Scale,
+  UserCheck,
+} from "lucide-react";
 
-const services = {
-  Registrations: [
-    { icon: Building2, title: 'GST Registration', desc: 'Complete GST registration & compliance' },
-    { icon: FileText, title: 'Company Registration', desc: 'Company formation & MOA/AOA filing' },
-    { icon: Users, title: 'Partnership Deed', desc: 'Drafting & registration of partnership' },
-  ],
-  Taxation: [
-    { icon: IndianRupee, title: 'Income Tax Filing', desc: 'Individual & corporate income tax returns' },
-    { icon: PieChart, title: 'Tax Planning', desc: 'Strategic tax optimization & planning' },
-    { icon: Shield, title: 'GST Compliance', desc: 'GST returns, reconciliation & audit' },
-  ],
-  Other: [
-    { icon: Briefcase, title: 'Business Advisory', desc: 'Business setup & structuring guidance' },
-    { icon: CheckCircle, title: 'Audit Support', desc: 'CA audit support & documentation' },
-    { icon: FileText, title: 'Legal Compliance', desc: 'Statutory compliance & compliance calendar' },
-  ],
-};
+gsap.registerPlugin(ScrollTrigger);
 
-const ServiceCard = ({ icon: Icon, title, desc, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    className="card-hover group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 relative overflow-hidden"
-  >
-    {/* Background gradient on hover */}
-    <div className="absolute inset-0 bg-gradient-to-br from-emerald-light to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-    {/* Content */}
-    <div className="relative z-10">
-      <div className="w-14 h-14 bg-emerald rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-        <Icon size={28} className="text-white" />
-      </div>
-      <h3 className="font-jakarta font-bold text-xl text-navy mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
-
-      {/* Hover indicator */}
-      <motion.div
-        className="mt-4 flex items-center gap-2 text-emerald text-sm font-medium"
-        initial={{ x: -10, opacity: 0 }}
-        whileHover={{ x: 0, opacity: 1 }}
-      >
-        <span>Learn more</span>
-        <span>→</span>
-      </motion.div>
-    </div>
-  </motion.div>
-);
+const services = [
+  {
+    title: "Income Tax Return",
+    desc: "Individual and corporate tax filing with maximized deductions and 100% compliance.",
+    icon: FileText,
+    color: "emerald",
+  },
+  {
+    title: "GST Registration",
+    desc: "Complete end-to-end GST support from registration to monthly/annual returns.",
+    icon: Briefcase,
+    color: "navy",
+  },
+  {
+    title: "Audit & Assurance",
+    desc: "Detailed financial auditing to ensure transparency and institutional trust.",
+    icon: ShieldCheck,
+    color: "emerald",
+  },
+  {
+    title: "Business Setup",
+    desc: "LLC, Pvt Ltd, and Partnership registration with all legal documentation.",
+    icon: Scale,
+    color: "navy",
+  },
+  {
+    title: "Tax Planning",
+    desc: "Strategic financial planning to optimize your tax liability legally.",
+    icon: TrendingUp,
+    color: "emerald",
+  },
+  {
+    title: "Corporate Legal",
+    desc: "Expert legal advice for corporate compliance and statutory requirements.",
+    icon: UserCheck,
+    color: "navy",
+  },
+];
 
 export function ServicesSection() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".service-card",
+        {
+          y: 50,
+          opacity: 0,
+          scale: 0.95,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="services" className="py-20 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-emerald text-sm font-semibold mb-2">OUR EXPERTISE</p>
-          <h2 className="font-jakarta text-4xl md:text-5xl font-bold text-navy mb-4">
-            Comprehensive Tax Services
+    <section
+      id="services"
+      ref={sectionRef}
+      className="py-32 bg-slate-50 relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-24">
+          <span className="text-emerald font-black uppercase tracking-[0.3em] mb-4 block">
+            Our Expertise
+          </span>
+          <h2 className="text-5xl lg:text-7xl font-black text-navy leading-tight">
+            WORLD CLASS <span className="text-emerald italic">SERVICES.</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            From registrations to compliance, we cover every aspect of tax and business advisory with professional excellence.
-          </p>
-        </motion.div>
+        </div>
 
-        {/* Services Grid */}
-        <div className="space-y-16">
-          {Object.entries(services).map((category, categoryIndex) => (
-            <div key={category[0]}>
-              <motion.h3
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="font-jakarta font-bold text-2xl text-navy mb-8 flex items-center gap-3"
-              >
-                <span className="w-1 h-8 bg-emerald rounded-full" />
-                {category[0]}
-              </motion.h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="service-card group relative p-10 bg-white rounded-[2.5rem] border border-navy/5 shadow-premium transition-all duration-500 hover:-translate-y-4 hover:bg-navy hover:shadow-2xl overflow-hidden"
+            >
+              {/* Abstract hover background */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald/10 rounded-bl-[5rem] transition-all duration-500 group-hover:bg-emerald/20 group-hover:scale-150" />
 
-              <div className="grid md:grid-cols-3 gap-8">
-                {category[1].map((service, index) => (
-                  <ServiceCard
-                    key={service.title}
-                    icon={service.icon}
-                    title={service.title}
-                    desc={service.desc}
-                    index={categoryIndex * 3 + index}
-                  />
-                ))}
+              <div className="relative z-10">
+                <div
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500 ${service.color === "emerald" ? "bg-emerald/10 text-emerald" : "bg-navy/10 text-navy"} group-hover:bg-white/10 group-hover:text-white`}
+                >
+                  <service.icon size={32} />
+                </div>
+
+                <h3 className="text-2xl font-black text-navy mb-4 transition-colors duration-500 group-hover:text-white">
+                  {service.title}
+                </h3>
+
+                <p className="text-navy/60 leading-relaxed font-medium transition-colors duration-500 group-hover:text-white/70">
+                  {service.desc}
+                </p>
+
+                <div className="mt-8 flex items-center gap-2 text-emerald font-bold opacity-0 translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
+                  <span>Learn more</span>
+                  <Scale size={16} />
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <p className="text-gray-600 mb-4">Need a service not listed here?</p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => window.location.href = 'tel:+919956464808'}
-            className="btn-primary"
-          >
-            Schedule Consultation
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );

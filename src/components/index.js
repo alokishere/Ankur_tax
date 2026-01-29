@@ -1,19 +1,10 @@
-import { Header } from './Header';
-import { HeroSection } from './HeroSection';
-import { TrustStrip } from './TrustStrip';
-import { ServicesSection } from './ServicesSection';
-import { WhyChooseUs } from './WhyChooseUs';
-import { ProcessSection } from './ProcessSection';
-import { ContactSection } from './ContactSection';
-import { Footer } from './Footer';
-
-export {
-  Header,
-  HeroSection,
-  TrustStrip,
-  ServicesSection,
-  WhyChooseUs,
-  ProcessSection,
-  ContactSection,
-  Footer,
-};
+export * from "./Header";
+export * from "./HeroSection";
+export * from "./TrustStrip";
+export * from "./ServicesSection";
+export * from "./WhyChooseUs";
+export * from "./ProcessSection";
+export * from "./ContactSection";
+export * from "./Footer";
+export * from "./CustomCursor";
+export * from "./LoadingScreen";

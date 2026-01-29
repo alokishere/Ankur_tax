@@ -1,159 +1,139 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, Clock, Users, Zap } from 'lucide-react';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CheckCircle2 } from "lucide-react";
 
-const benefits = [
-  {
-    icon: Check,
-    title: 'Transparent Process',
-    description: 'Clear communication at every step. No hidden charges, no surprises. You always know what\'s happening with your compliance.',
-  },
-  {
-    icon: Clock,
-    title: 'Timely Filings',
-    description: 'All deadlines met on time. We maintain a compliance calendar and ensure zero delays in statutory filings.',
-  },
-  {
-    icon: Users,
-    title: 'Personal Consultant Support',
-    description: 'Dedicated consultant assigned to your case. Direct access to Adv. Ankul Yadav for important matters.',
-  },
-  {
-    icon: Zap,
-    title: 'Affordable Pricing',
-    description: 'Competitive rates without compromising quality. Flexible packages tailored to your business needs.',
-  },
-];
-
-const BenefitCard = ({ icon: Icon, title, description, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    className="group relative"
-  >
-    {/* Card */}
-    <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 relative z-10 group-hover:border-emerald transition-all duration-300">
-      {/* Icon Container */}
-      <div className="mb-6 relative">
-        <div className="w-16 h-16 bg-emerald-light rounded-xl flex items-center justify-center group-hover:bg-emerald group-hover:text-white transition-all duration-300">
-          <Icon size={32} className="text-emerald group-hover:text-white transition-colors" />
-        </div>
-      </div>
-
-      {/* Content */}
-      <h3 className="font-jakarta font-bold text-xl text-navy mb-3 group-hover:text-emerald transition-colors">
-        {title}
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">
-        {description}
-      </p>
-
-      {/* Accent line */}
-      <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald to-transparent rounded-full w-0 group-hover:w-full transition-all duration-300" />
-    </div>
-
-    {/* Background blob on hover */}
-    <motion.div
-      className="absolute -inset-0 bg-emerald/5 rounded-2xl -z-0"
-      initial={{ scale: 0.8, opacity: 0 }}
-      whileHover={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.3 }}
-    />
-  </motion.div>
-);
+gsap.registerPlugin(ScrollTrigger);
 
 export function WhyChooseUs() {
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".feature-item",
+        {
+          x: -30,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+          },
+        },
+      );
+
+      gsap.fromTo(
+        imageRef.current,
+        {
+          scale: 1.1,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const features = [
+    {
+      title: "Zero Error Policy",
+      desc: "100% precision in tax calculations and filing.",
+    },
+    {
+      title: "Maximum Refunds",
+      desc: "Expert strategy to claim every eligible deduction.",
+    },
+    {
+      title: "Always Available",
+      desc: "24/7 dedicated support for all your queries.",
+    },
+    {
+      title: "Fast Turnaround",
+      desc: "Compliances completed well within statutory deadlines.",
+    },
+  ];
+
   return (
-    <section id="why-us" className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-emerald text-sm font-semibold mb-2">WHY ANKUL TAX?</p>
-          <h2 className="font-jakarta text-4xl md:text-5xl font-bold text-navy mb-4">
-            What Sets Us Apart
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We're not just a consultancy. We're your trusted partner in financial compliance and business growth.
-          </p>
-        </motion.div>
+    <section
+      id="why-us"
+      ref={sectionRef}
+      className="py-32 bg-white overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-20">
+          {/* Left Content */}
+          <div className="lg:w-1/2">
+            <span className="text-emerald font-black uppercase tracking-widest mb-6 block underline decoration-4 underline-offset-8">
+              The Advantage
+            </span>
+            <h2 className="text-5xl lg:text-7xl font-black text-navy leading-[0.95] mb-12">
+              WHY THE BEST <br />
+              <span className="text-emerald italic">TRUST US.</span>
+            </h2>
 
-        {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 mb-16">
-          {benefits.map((benefit, index) => (
-            <BenefitCard
-              key={benefit.title}
-              icon={benefit.icon}
-              title={benefit.title}
-              description={benefit.description}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* Divider */}
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: '100%' }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="h-px bg-gradient-to-r from-transparent via-emerald to-transparent mb-16"
-        />
-
-        {/* Authority Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="bg-navy text-white rounded-2xl p-8 md:p-12"
-        >
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="font-jakarta font-bold text-3xl mb-4">Meet Your Tax Expert</h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                Adv. Ankul Yadav brings 15+ years of expertise in tax consultation and business advisory. 
-                With a deep understanding of Indian tax laws and business compliance, he leads the team with 
-                a commitment to excellence and client satisfaction.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <Check size={20} className="text-emerald flex-shrink-0" />
-                  <span>Certified Tax & Business Advisor</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check size={20} className="text-emerald flex-shrink-0" />
-                  <span>15+ Years of Professional Experience</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check size={20} className="text-emerald flex-shrink-0" />
-                  <span>100+ Satisfied Clients Across India</span>
-                </li>
-              </ul>
-            </div>
-            <div className="relative h-64 md:h-80 rounded-2xl bg-gradient-to-br from-emerald/20 to-transparent overflow-hidden border border-emerald/30">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-emerald to-navy opacity-20"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: -1, ease: 'linear' }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-3">👨‍⚖️</div>
-                  <p className="font-jakarta font-bold text-xl text-white">Adv. Ankul Yadav</p>
-                  <p className="text-emerald text-sm">Tax Consultant & Advisor</p>
+            <div className="space-y-10">
+              {features.map((f, i) => (
+                <div
+                  key={i}
+                  className="feature-item flex gap-6 border-b border-navy/5 pb-8"
+                >
+                  <div className="mt-1">
+                    <CheckCircle2 className="text-emerald" size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-navy mb-2">
+                      {f.title}
+                    </h3>
+                    <p className="text-navy/60 font-medium leading-relaxed">
+                      {f.desc}
+                    </p>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Visual */}
+          <div className="lg:w-1/2 relative">
+            <div className="absolute -inset-10 bg-emerald/5 rounded-[4rem] -rotate-6" />
+            <div
+              ref={imageRef}
+              className="relative rounded-[4rem] overflow-hidden shadow-2xl rotate-3"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200"
+                alt="Why Choose Us"
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-navy/20 mix-blend-overlay" />
+
+              <div className="absolute bottom-10 left-10 glass p-8 rounded-3xl max-w-xs shadow-premium">
+                <span className="text-5xl font-black text-navy block mb-2">
+                  10+
+                </span>
+                <p className="font-bold text-navy/70 uppercase tracking-widest text-xs">
+                  Different financial domains mastered over 15 years.
+                </p>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
