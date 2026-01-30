@@ -1,14 +1,32 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export function ContactSection() {
   const [formStatus, setFormStatus] = useState("idle"); // idle, sending, success
 
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus("sending");
-    setTimeout(() => setFormStatus("success"), 2000);
+    setLoading(true);
+
+    const whatsappNumber = "+919956464808"; // Replace with your WhatsApp number
+    const text = `Hello, I am interested in your services. \n Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(whatsappUrl, "_blank");
+    setLoading(false);
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -66,9 +84,22 @@ export function ContactSection() {
                   </span>
                 </div>
                 <p className="text-lg font-bold text-navy/70 leading-relaxed ml-18">
-                  Varanasi, Uttar Pradesh
-                  <br />
-                  India
+                  Shival Yadav Complex <br /> Near G.C.R.G. College, Chandrika Devi Road ,
+                  B.K.T. Lucknow 227202
+                </p>
+              </div>
+              <div className="group cursor-pointer">
+                <div className="flex items-center gap-6 mb-2">
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald group-hover:bg-emerald group-hover:text-white transition-all">
+                    <MapPin size={24} />
+                  </div>
+                  <span className="text-navy/40 font-bold uppercase tracking-widest text-xs">
+                    Head Office
+                  </span>
+                </div>
+                <p className="text-lg font-bold text-navy/70 leading-relaxed ml-18">
+                  308 Sahara Shopping Center <br /> Lekhraj Faizabad Boad, Lucknow
+                  226016
                 </p>
               </div>
             </div>
@@ -76,73 +107,46 @@ export function ContactSection() {
 
           {/* Form Side */}
           <div className="lg:w-2/3">
-            <div className="bg-white p-12 lg:p-20 rounded-[4rem] shadow-premium border border-navy/5 relative">
+            <div className="bg-white p-12 lg:p-20 rounded-[4rem] shadow-premium border border-navy/5">
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid md:grid-cols-2 gap-10">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      required
-                      className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors peer"
-                      placeholder=" "
-                    />
-                    <label className="absolute left-0 top-4 text-navy/40 font-bold transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-emerald peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs">
-                      Your Name
-                    </label>
-                  </div>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      required
-                      className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors peer"
-                      placeholder=" "
-                    />
-                    <label className="absolute left-0 top-4 text-navy/40 font-bold transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-emerald peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs">
-                      Email Address
-                    </label>
-                  </div>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Name"
+                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="Email Address"
+                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors"
+                  />
                 </div>
 
-                <div className="relative">
-                  <textarea
-                    rows="4"
-                    required
-                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors peer resize-none"
-                    placeholder=" "
-                  ></textarea>
-                  <label className="absolute left-0 top-4 text-navy/40 font-bold transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-emerald peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-xs">
-                    Tell us about your needs
-                  </label>
-                </div>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="4"
+                  required
+                  placeholder="Tell us about your needs"
+                  className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors resize-none"
+                ></textarea>
 
                 <button
-                  disabled={formStatus !== "idle"}
-                  className={`btn-premium w-full py-6 text-xl flex items-center justify-center gap-4 ${formStatus === "success" ? "bg-emerald" : ""}`}
+                  type="submit"
+                  disabled={loading}
+                  className={`btn-premium w-full py-6 text-xl flex items-center justify-center gap-4 opacity-${loading ? "50" : "100"}`}
                 >
-                  {formStatus === "idle" && (
-                    <>
-                      <span>Submit Inquiry</span>
-                      <Send size={24} />
-                    </>
-                  )}
-                  {formStatus === "sending" && (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      <Send size={24} />
-                    </motion.div>
-                  )}
-                  {formStatus === "success" && (
-                    <>
-                      <span>Message Sent!</span>
-                      <Check size={24} />
-                    </>
-                  )}
+                  <span>{loading ? "Sending..." : "Submit Inquiry"}</span>
+                  <Send size={24} />
                 </button>
               </form>
             </div>

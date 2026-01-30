@@ -18,8 +18,8 @@ export function Footer() {
           {/* Brand Part */}
           <div className="lg:w-1/3">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-white font-bold">
-                ATC
+              <div className="w-14 h-12 rounded-2xl flex items-center justify-center text-white font-bold">
+                <img src="/logo.png" alt="Logo" className="h-full w-full" />
               </div>
               <h2 className="font-jakarta font-extrabold text-2xl tracking-tight text-navy">
                 ANKUL TAX
@@ -27,7 +27,7 @@ export function Footer() {
             </div>
             <p className="text-navy/40 font-medium leading-relaxed mb-8 max-w-sm">
               Providing precision-driven financial and tax consultancy since
-              2009. We turn complexity into compliance.
+              2022. We turn complexity into compliance.
             </p>
             <div className="flex gap-4">
               {[Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -101,7 +101,7 @@ export function Footer() {
             © {currentYear} Ankul Tax Consultancy. All rights reserved.
           </p>
           <p className="text-navy/40 font-bold text-sm flex items-center gap-2">
-            Designed with <span className="text-emerald">❤</span> for Excellence
+            Designed with <span className="text-emerald">❤</span> for Excellence by <a href="https://itsalok.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-emerald">Alok</a>
           </p>
         </div>
       </div>

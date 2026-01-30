@@ -125,10 +125,10 @@ export function WhyChooseUs() {
 
               <div className="absolute bottom-10 left-10 glass p-8 rounded-3xl max-w-xs shadow-premium">
                 <span className="text-5xl font-black text-navy block mb-2">
-                  10+
+                  3+
                 </span>
                 <p className="font-bold text-navy/70 uppercase tracking-widest text-xs">
-                  Different financial domains mastered over 15 years.
+                  Different financial domains mastered over 3 years.
                 </p>
               </div>
             </div>

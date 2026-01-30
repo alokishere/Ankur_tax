@@ -36,8 +36,8 @@ export function Header() {
           >
             {/* Logo */}
             <a href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12">
-                ATC
+              <div className="w-14 h-12 rounded-2xl flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12">
+                <img src="/logo.png" alt="Logo" className="h-full w-full" />
               </div>
               <div className="flex flex-col">
                 <span className="font-jakarta font-extrabold text-xl tracking-tight text-navy">

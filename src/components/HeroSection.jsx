@@ -54,7 +54,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-mesh pt-32 lg:pt-0 flex items-center overflow-hidden"
+      className="relative min-h-screen pt-20 lg:pt-0 flex items-center overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left Content */}
@@ -72,7 +72,7 @@ export function HeroSection() {
 
           <h1
             ref={titleRef}
-            className="text-4xl sm:text-6xl lg:text-8xl font-black text-navy leading-[0.95] mb-8"
+            className="text-4xl sm:text-6xl lg:text-7xl font-black text-navy leading-[0.95] mb-8"
           >
             <span className="block overflow-hidden h-[1.1em]">
               <span className="hero-text-line block">SMART</span>
@@ -150,7 +150,7 @@ export function HeroSection() {
             {/* Floating Badges */}
             <div className="floating-badge absolute top-6 left-6 sm:top-10 sm:left-10 p-4 sm:p-6 glass rounded-2xl sm:rounded-3xl shadow-premium">
               <span className="block text-2xl sm:text-4xl font-black text-navy leading-none">
-                15+
+                3+
               </span>
               <span className="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-emerald">
                 Years Experience
