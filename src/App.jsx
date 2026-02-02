@@ -13,6 +13,9 @@ import {
 } from "./components";
 import { useLenisScroll, useScrollReveal } from "./hooks";
 import "./index.css";
+import WhatsApp from "./components/WhatsApp";
+import AboutSection from "./components/AboutSection";
+import LocomotiveScroll from "locomotive-scroll";
 
 function App() {
   useLenisScroll();
@@ -36,12 +39,18 @@ function App() {
     return () => document.removeEventListener("click", handleLinkClick);
   }, []);
 
+  const scroll = new LocomotiveScroll({
+    el: document.querySelector("[data-scroll-container]"),
+    smooth: true,
+  });
   return (
     <div className="min-h-screen bg-white">
       <LoadingScreen />
       <CustomCursor />
+      <WhatsApp />
       <Header />
       <HeroSection />
+      <AboutSection />
       <TrustStrip />
       <ServicesSection />
       <WhyChooseUs />

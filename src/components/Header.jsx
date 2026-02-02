@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import {FaWhatsapp} from 'react-icons/fa'
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,6 +15,8 @@ export function Header() {
   }, []);
 
   const navLinks = [
+    { label: "Home", href: "#" },
+    { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Why Us", href: "#why-us" },
     { label: "Process", href: "#process" },
@@ -71,7 +73,7 @@ export function Header() {
                 rel="noopener noreferrer"
                 className="p-3 text-emerald hover:bg-emerald-light rounded-full transition-colors"
               >
-                <MessageCircle size={22} />
+                <FaWhatsapp size={40} />
               </a>
               <button
                 onClick={() => (window.location.href = "tel:+919956464808")}

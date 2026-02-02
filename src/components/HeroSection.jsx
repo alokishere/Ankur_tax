@@ -65,8 +65,8 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 bg-emerald/10 border border-emerald/20 px-4 py-2 rounded-full mb-8"
           >
             <Star size={16} className="text-emerald fill-emerald" />
-            <span className="text-xs sm:text-sm font-bold text-emerald uppercase tracking-wider">
-              Trusted Tax Solutions
+            <span className="text-sm sm:text-sm font-semibold text-emerald uppercase tracking-wider">
+             Serving Individuals & Businesses Across Lucknow
             </span>
           </motion.div>
 
@@ -98,9 +98,9 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-6">
             <button
               onClick={() => (window.location.hash = "#contact")}
-              className="btn-premium flex items-center justify-center gap-3 text-lg py-5 px-10 group w-full sm:w-auto"
+              className="btn-premium flex items-center justify-center gap-1 text-lg py-1 px-5 group w-full sm:w-auto"
             >
-              <span>Get Started</span>
+              <span>Book Free Consultation</span>
               <ArrowRight
                 size={22}
                 className="group-hover:translate-x-2 transition-transform"
@@ -109,13 +109,13 @@ export function HeroSection() {
 
             <div className="flex items-center gap-4 justify-center sm:justify-start">
               <div className="flex -space-x-3">
-                {[1, 2, 3].map((i) => (
+                {["https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/165C4/production/_121888519_parag-agarwal_hires.jpg", 'https://asiasociety.org/sites/default/files/styles/1200w/public/2019-10/Parag%20Khanna_Photo1%20-%20PC%20Parag%20Khanna%201200x800.png', "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/99d9/live/8f9d55e0-2f44-11f0-8f57-b7237f6a66e6.jpg"].map((i) => (
                   <div
                     key={i}
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white overflow-hidden bg-slate-200"
                   >
                     <img
-                      src={`https://ui-avatars.com/api/?name=User+${i}&background=random`}
+                      src={i}
                       alt="User"
                       className="w-full h-full object-cover"
                     />
@@ -141,7 +141,8 @@ export function HeroSection() {
           <div className="relative rounded-[3rem] overflow-hidden border-2 border-white/50 shadow-premium aspect-[4/5] lg:aspect-[3/4]">
             <img
               ref={imageRef}
-              src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000"
+              // src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000"
+              src="/ak.jpeg"
               className="w-full h-full object-cover scale-110"
               alt="Tax Consultancy Premium"
             />

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export function ContactSection() {
-  const [formStatus, setFormStatus] = useState("idle"); // idle, sending, success
-
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -20,9 +18,11 @@ export function ContactSection() {
     e.preventDefault();
     setLoading(true);
 
-    const whatsappNumber = "+919956464808"; // Replace with your WhatsApp number
-    const text = `Hello, I am interested in your services. \n Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    const whatsappNumber = "919956464808";
+    const text = `Hello, I am interested in your tax services.\n\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      text,
+    )}`;
 
     window.open(whatsappUrl, "_blank");
     setLoading(false);
@@ -30,10 +30,7 @@ export function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      className="py-32 bg-slate-50 relative overflow-hidden"
-    >
+    <section id="contact" className="py-32 ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20">
           {/* Info Side */}
@@ -41,15 +38,21 @@ export function ContactSection() {
             <span className="text-emerald font-black uppercase tracking-[0.2em] mb-4 block">
               Get in Touch
             </span>
-            <h2 className="text-6xl font-black text-navy leading-tight mb-12">
-              LET'S <span className="text-emerald italic">TALK.</span>
+
+            <h2 className="text-6xl font-black text-navy leading-tight mb-6">
+              LET&apos;S <span className="text-emerald italic">TALK.</span>
             </h2>
 
+            <p className="text-navy/70 font-semibold mb-10">
+              We usually respond within <strong>24 hours</strong>.
+            </p>
+
             <div className="space-y-12">
-              <div className="group cursor-pointer">
+              {/* Email */}
+              <div>
                 <div className="flex items-center gap-6 mb-2">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald group-hover:bg-emerald group-hover:text-white transition-all">
-                    <Mail size={24} />
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald">
+                    <Mail size={22} />
                   </div>
                   <span className="text-navy/40 font-bold uppercase tracking-widest text-xs">
                     Email Us
@@ -60,46 +63,39 @@ export function ContactSection() {
                 </p>
               </div>
 
-              <div className="group cursor-pointer">
+              {/* Phone */}
+              <div>
                 <div className="flex items-center gap-6 mb-2">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald group-hover:bg-emerald group-hover:text-white transition-all">
-                    <Phone size={24} />
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald">
+                    <Phone size={22} />
                   </div>
                   <span className="text-navy/40 font-bold uppercase tracking-widest text-xs">
-                    Call Us
+                    Call / WhatsApp
                   </span>
                 </div>
                 <p className="text-xl font-black text-navy ml-18">
-                  +91 9956464808
+                  +91 99564 64808
                 </p>
               </div>
 
-              <div className="group cursor-pointer">
+              {/* Address */}
+              <div>
                 <div className="flex items-center gap-6 mb-2">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald group-hover:bg-emerald group-hover:text-white transition-all">
-                    <MapPin size={24} />
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald">
+                    <MapPin size={22} />
                   </div>
                   <span className="text-navy/40 font-bold uppercase tracking-widest text-xs">
-                    Our Office
+                    Office Location
                   </span>
                 </div>
                 <p className="text-lg font-bold text-navy/70 leading-relaxed ml-18">
-                  Shival Yadav Complex <br /> Near G.C.R.G. College, Chandrika Devi Road ,
-                  B.K.T. Lucknow 227202
+                 Shiv Son's Complex <br />
+                  Near G.C.R.G. College, Chandrika Devi Road, <br />
+                  B.K.T., Lucknow - 227202
                 </p>
-              </div>
-              <div className="group cursor-pointer">
-                <div className="flex items-center gap-6 mb-2">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-emerald group-hover:bg-emerald group-hover:text-white transition-all">
-                    <MapPin size={24} />
-                  </div>
-                  <span className="text-navy/40 font-bold uppercase tracking-widest text-xs">
-                    Head Office
-                  </span>
-                </div>
-                <p className="text-lg font-bold text-navy/70 leading-relaxed ml-18">
-                  308 Sahara Shopping Center <br /> Lekhraj Faizabad Boad, Lucknow
-                  226016
+
+                <p className="mt-4 text-sm font-semibold text-navy/50 ml-18">
+                  Serving Bakshi Ka Talab, Gomti Nagar & nearby areas
                 </p>
               </div>
             </div>
@@ -108,47 +104,64 @@ export function ContactSection() {
           {/* Form Side */}
           <div className="lg:w-2/3">
             <div className="bg-white p-12 lg:p-20 rounded-[4rem] shadow-premium border border-navy/5">
+              <p className="text-navy/60 font-semibold mb-8">
+                Prefer a quick response? WhatsApp us directly using the form
+                below.
+              </p>
+
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid md:grid-cols-2 gap-10">
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
                     required
                     placeholder="Your Name"
-                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none"
                   />
+
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
                     required
                     placeholder="Email Address"
-                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none"
                   />
                 </div>
 
                 <textarea
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   rows="4"
                   required
-                  placeholder="Tell us about your needs"
-                  className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none transition-colors resize-none"
-                ></textarea>
+                  placeholder="Tell us about your tax or GST needs"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b-2 border-navy/10 py-4 text-xl font-bold text-navy focus:border-emerald outline-none resize-none"
+                />
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`btn-premium w-full py-6 text-xl flex items-center justify-center gap-4 opacity-${loading ? "50" : "100"}`}
+                  className="btn-premium w-full py-6 text-xl flex items-center justify-center gap-4 disabled:opacity-50"
                 >
-                  <span>{loading ? "Sending..." : "Submit Inquiry"}</span>
-                  <Send size={24} />
+                  {loading ? "Sending..." : "Book Free Consultation"}
+                  <Send size={22} />
                 </button>
               </form>
+
+              {/* Google Map */}
+              <div className="mt-16 rounded-3xl overflow-hidden border border-navy/10">
+                <iframe
+                  title="Ankul Tax Consultancy Location"
+                  src="https://www.google.com/maps?q=Ankul%20Tax%20Consultancy%20Lucknow&output=embed"
+                  className="w-full h-72"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
