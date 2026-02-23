@@ -18,7 +18,7 @@ export function ContactSection() {
     e.preventDefault();
     setLoading(true);
 
-    const whatsappNumber = "919956464808";
+    const whatsappNumber = "918853464808";
     const text = `Hello, I am interested in your tax services.\n\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       text,
@@ -74,7 +74,7 @@ export function ContactSection() {
                   </span>
                 </div>
                 <p className="text-xl font-black text-navy ml-18">
-                  +91 99564 64808
+                 +91 88534 64808
                 </p>
               </div>
 

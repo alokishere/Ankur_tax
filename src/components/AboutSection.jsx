@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutSection = () => {
+const AboutSection = ({ id }) => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      id="about"
+      id={id || "about"}
       className="relative bg-gradient-to-b from-white via-emerald-light/40 to-white overflow-hidden"
       style={{ height: "120vh" }}
     >
@@ -139,7 +139,7 @@ const AboutSection = () => {
               <img
                 src="/image2.jpeg"
                 alt="Professional workspace"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover "
               />
             </div>
 
@@ -151,7 +151,7 @@ const AboutSection = () => {
               <img
                 src="/image1.jpeg"
                 alt="Office consultation"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover  scale-120"
               />
             </div>
 

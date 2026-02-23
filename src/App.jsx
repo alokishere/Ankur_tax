@@ -10,12 +10,13 @@ import {
   Footer,
   LoadingScreen,
   CustomCursor,
+  
 } from "./components";
 import { useLenisScroll, useScrollReveal } from "./hooks";
 import "./index.css";
 import WhatsApp from "./components/WhatsApp";
-import AboutSection from "./components/AboutSection";
 import LocomotiveScroll from "locomotive-scroll";
+import AboutSection from './components/AboutSection';
 
 function App() {
   useLenisScroll();
@@ -44,19 +45,18 @@ function App() {
     smooth: true,
   });
   return (
-    <div className="min-h-screen bg-white">
-      <LoadingScreen />
-      <CustomCursor />
-      <WhatsApp />
+    <div className="min-h-screen bg-white" data-scroll-container>
       <Header />
-      <HeroSection />
-      <AboutSection />
-      <TrustStrip />
-      <ServicesSection />
-      <WhyChooseUs />
-      <ProcessSection />
-      <ContactSection />
-      <Footer />
+      <main className="pt-32">
+        <HeroSection />
+        <AboutSection id="about" />
+        <TrustStrip />
+        <ServicesSection id="services" />
+        <WhyChooseUs id="why-choose-us" />
+        <ProcessSection id="process" />
+        <ContactSection />
+        <Footer />
+      </main>
     </div>
   );
 }

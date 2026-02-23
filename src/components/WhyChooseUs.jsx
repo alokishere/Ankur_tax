@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function WhyChooseUs() {
+export function WhyChooseUs({ id }) {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
 
@@ -71,7 +71,7 @@ export function WhyChooseUs() {
 
   return (
     <section
-      id="why-us"
+      id={id || "why-choose-us"}
       ref={sectionRef}
       className="py-32 bg-white overflow-hidden"
     >
@@ -125,10 +125,10 @@ export function WhyChooseUs() {
 
               <div className="absolute bottom-10 left-10 glass p-8 rounded-3xl max-w-xs shadow-premium">
                 <span className="text-5xl font-black text-navy block mb-2">
-                  3+
+                  4+
                 </span>
                 <p className="font-bold text-navy/70 uppercase tracking-widest text-xs">
-                  Different financial domains mastered over 3 years.
+                  Different financial domains mastered over 4 years.
                 </p>
               </div>
             </div>

@@ -31,7 +31,7 @@ export function Footer() {
     return () => ctx.revert();
   }, []);
 
-  const whatsappNumber = "919956464808";
+  const whatsappNumber = "918853464808";
   const whatsappMessage =
     "Hello Ankul Tax Consultancy,%0AI visited your website and would like to discuss tax/GST services.";
 
@@ -50,15 +50,15 @@ export function Footer() {
               <div className="w-14 h-12 rounded-2xl overflow-hidden">
                 <img src="/logo.png" alt="Ankul Tax Consultancy Logo" />
               </div>
-              <h2 className="font-jakarta font-extrabold text-2xl text-navy leading-none">
+              <h2 className="font-jakarta font-bold text-md text-navy leading-none">
                 ANKUL TAX
                 <br />
-              <span className="text-emerald text-sm"> CONSULTANCY</span>
+                <span className="text-emerald text-xm"> CONSULTANCY</span>
               </h2>
             </div>
 
             <p className="text-navy/40 font-medium leading-relaxed mb-8 max-w-sm">
-              Precision-driven tax & financial consultancy since 2022. Turning
+              Precision-driven tax & financial consultancy since 2021. Turning
               complexity into compliance for individuals and businesses.
             </p>
 
@@ -111,7 +111,7 @@ export function Footer() {
                         {link}
                       </a>
                     </li>
-                  )
+                  ),
                 )}
               </ul>
             </div>
@@ -128,7 +128,10 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="btn-premium py-1 w-full md:w-auto flex items-center justify-center gap-3"
               >
-               <span className="text-emerald hover:text-navy"> <FaWhatsapp size={60}/></span>
+                <span className="text-emerald hover:text-navy">
+                  {" "}
+                  <FaWhatsapp size={60} />
+                </span>
                 WhatsApp Consultation
               </a>
             </div>

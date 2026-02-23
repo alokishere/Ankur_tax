@@ -9,49 +9,56 @@ import {
   Scale,
   UserCheck,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: "Income Tax Return",
+    title: "Return",
     desc: "Individual and corporate tax filing with maximized deductions and 100% compliance.",
     icon: FileText,
     color: "emerald",
+    path:"/services/return"
   },
   {
-    title: "GST Registration",
+    title: "Registration",
     desc: "Complete end-to-end GST support from registration to monthly/annual returns.",
     icon: Briefcase,
     color: "navy",
+    path:"/services/registration"
   },
   {
-    title: "Audit & Assurance",
+    title: "Accounting",
     desc: "Detailed financial auditing to ensure transparency and institutional trust.",
     icon: ShieldCheck,
     color: "emerald",
+    path:"/services/accounting"
   },
   {
     title: "Business Setup",
     desc: "LLC, Pvt Ltd, and Partnership registration with all legal documentation.",
     icon: Scale,
     color: "navy",
+    path:"/services/business"
   },
   {
     title: "Tax Planning",
     desc: "Strategic financial planning to optimize your tax liability legally.",
     icon: TrendingUp,
     color: "emerald",
+    path:"/services/accounting"
   },
   {
     title: "Corporate Legal",
     desc: "Expert legal advice for corporate compliance and statutory requirements.",
     icon: UserCheck,
     color: "navy",
+    path:"/services/legal"
   },
 ];
 
-export function ServicesSection() {
+export function ServicesSection({ id }) {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -84,7 +91,7 @@ export function ServicesSection() {
 
   return (
     <section
-      id="services"
+      id={id || "services"}
       ref={sectionRef}
       className="py-32 bg-slate-50 relative overflow-hidden"
     >
@@ -100,7 +107,8 @@ export function ServicesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div
+            <Link
+            to={service.path}
               key={index}
               className="service-card group relative p-10 bg-white rounded-[2.5rem] border border-navy/5 shadow-premium transition-all duration-500 hover:-translate-y-4 hover:bg-navy hover:shadow-2xl overflow-hidden"
             >
@@ -127,7 +135,7 @@ export function ServicesSection() {
                   <Scale size={16} />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

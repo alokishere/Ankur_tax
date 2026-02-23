@@ -138,3 +138,371 @@ html.lenis body {
     radial-gradient(at 50% 0%, hsla(222, 47%, 13%, 0.05) 0, transparent 50%), 
     radial-gradient(at 100% 0%, hsla(161, 71%, 39%, 0.1) 0, transparent 50%);
 }
+
+/* Mobile Responsive Animations */
+@media (max-width: 768px) {
+  /* Global mobile improvements */
+  body {
+    cursor: default; /* Enable default cursor on mobile */
+  }
+  
+  .service-hero h1,
+  .service-hero p {
+    animation: slideInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .service-hero h1 {
+    animation-delay: 0.2s;
+  }
+  
+  .service-hero p {
+    animation-delay: 0.4s;
+  }
+  
+  .return-service-card,
+  .registration-service-card,
+  .accounting-service-card,
+  .business-service-card,
+  .legal-service-card,
+  .service-card,
+  .contact-card,
+  .feature-card,
+  .stat-item,
+  .process-step,
+  .benefit-item,
+  .testimonial-card {
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  /* Staggered animations for all service cards */
+  .return-service-card:nth-child(1),
+  .registration-service-card:nth-child(1),
+  .accounting-service-card:nth-child(1),
+  .business-service-card:nth-child(1),
+  .legal-service-card:nth-child(1),
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  
+  .return-service-card:nth-child(2),
+  .registration-service-card:nth-child(2),
+  .accounting-service-card:nth-child(2),
+  .business-service-card:nth-child(2),
+  .legal-service-card:nth-child(2),
+  .service-card:nth-child(2) { animation-delay: 0.2s; }
+  
+  .return-service-card:nth-child(3),
+  .registration-service-card:nth-child(3),
+  .accounting-service-card:nth-child(3),
+  .business-service-card:nth-child(3),
+  .legal-service-card:nth-child(3),
+  .service-card:nth-child(3) { animation-delay: 0.3s; }
+  
+  .return-service-card:nth-child(4),
+  .registration-service-card:nth-child(4),
+  .accounting-service-card:nth-child(4),
+  .business-service-card:nth-child(4),
+  .legal-service-card:nth-child(4),
+  .service-card:nth-child(4) { animation-delay: 0.4s; }
+  
+  .return-service-card:nth-child(5),
+  .registration-service-card:nth-child(5),
+  .accounting-service-card:nth-child(5),
+  .business-service-card:nth-child(5),
+  .legal-service-card:nth-child(5),
+  .service-card:nth-child(5) { animation-delay: 0.5s; }
+  
+  .return-service-card:nth-child(6),
+  .registration-service-card:nth-child(6),
+  .accounting-service-card:nth-child(6),
+  .business-service-card:nth-child(6),
+  .legal-service-card:nth-child(6),
+  .service-card:nth-child(6) { animation-delay: 0.6s; }
+  
+  /* Feature items */
+  .feature-item,
+  .contact-card,
+  .stat-item,
+  .benefit-item,
+  .testimonial-card {
+    animation: slideInUp 0.5s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .feature-item:nth-child(1),
+  .contact-card:nth-child(1),
+  .stat-item:nth-child(1),
+  .benefit-item:nth-child(1),
+  .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+  
+  .feature-item:nth-child(2),
+  .contact-card:nth-child(2),
+  .stat-item:nth-child(2),
+  .benefit-item:nth-child(2),
+  .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+  
+  .feature-item:nth-child(3),
+  .contact-card:nth-child(3),
+  .stat-item:nth-child(3),
+  .benefit-item:nth-child(3),
+  .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+  
+  .feature-item:nth-child(4),
+  .contact-card:nth-child(4),
+  .stat-item:nth-child(4),
+  .benefit-item:nth-child(4),
+  .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
+  
+  /* Section headings */
+  .features-section .text-center,
+  .bg-navy .text-center,
+  .hero-content,
+  .process-steps .text-center {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  /* Mobile-specific layout adjustments */
+  .grid {
+    gap: 1rem;
+  }
+  
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Typography scaling */
+  h1 {
+    font-size: 2.5rem; /* 40px */
+  }
+  
+  h2 {
+    font-size: 2rem; /* 32px */
+  }
+  
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.75rem;
+  }
+  
+  /* Padding adjustments */
+  .py-24 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .py-32 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .pt-32 {
+    padding-top: 5rem;
+  }
+  
+  .pb-8 {
+    padding-bottom: 2rem;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Card spacing and touch targets */
+  .service-card,
+  .return-service-card,
+  .registration-service-card,
+  .accounting-service-card,
+  .business-service-card,
+  .legal-service-card,
+  .contact-card,
+  .feature-card,
+  .stat-item,
+  .process-step,
+  .benefit-item,
+  .testimonial-card {
+    margin-bottom: 1.5rem;
+    min-height: auto;
+  }
+  
+  /* Touch-friendly buttons */
+  button, .btn-premium, a[href] {
+    min-height: 44px; /* iOS recommended touch target */
+    min-width: 44px;
+  }
+  
+  /* Image handling */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Fix whitespace issues */
+  img:last-child {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Improved spacing */
+  .gap-8 {
+    gap: 1rem;
+  }
+  
+  .gap-6 {
+    gap: 1rem;
+  }
+  
+  .p-8 {
+    padding: 1.5rem;
+  }
+  
+  .p-6 {
+    padding: 1.25rem;
+  }
+  
+  /* Mobile typography */
+  .text-5xl, .text-6xl, .text-7xl {
+    font-size: 2.25rem; /* 36px */
+  }
+  
+  .text-4xl {
+    font-size: 1.875rem; /* 30px */
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem; /* 24px */
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem; /* 20px */
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-menu-link {
+    font-size: 1.5rem; /* 24px */
+    padding: 0.75rem 0;
+  }
+  
+  /* Form improvements */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+  }
+  
+  /* Mobile hover states - disable hover effects */
+  @media (hover: none) {
+    .service-card:hover,
+    .return-service-card:hover,
+    .registration-service-card:hover,
+    .accounting-service-card:hover,
+    .business-service-card:hover,
+    .legal-service-card:hover,
+    .contact-card:hover,
+    .feature-card:hover,
+    .stat-item:hover,
+    .process-step:hover,
+    .benefit-item:hover,
+    .testimonial-card:hover {
+      transform: none;
+      box-shadow: var(--shadow-premium);
+    }
+    
+    /* Active states for touch */
+    .service-card:active,
+    .return-service-card:active,
+    .registration-service-card:active,
+    .accounting-service-card:active,
+    .business-service-card:active,
+    .legal-service-card:active,
+    .contact-card:active,
+    .feature-card:active,
+    .stat-item:active,
+    .process-step:active,
+    .benefit-item:active,
+    .testimonial-card:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
+  }
+  
+  /* Landscape orientation fixes */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .pt-32 {
+      padding-top: 3rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .text-5xl, .text-6xl, .text-7xl {
+      font-size: 1.875rem;
+    }
+  }
+  
+  /* Small screen improvements */
+  @media (max-width: 480px) {
+    .px-6 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .max-w-7xl {
+      max-width: 100%;
+    }
+    
+    .rounded-3xl {
+      border-radius: 1.5rem;
+    }
+    
+    .rounded-2xl {
+      border-radius: 1rem;
+    }
+  }
+}

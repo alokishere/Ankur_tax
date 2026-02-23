@@ -27,7 +27,7 @@ const steps = [
   },
 ];
 
-export function ProcessSection() {
+export function ProcessSection({ id }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export function ProcessSection() {
 
   return (
     <section
-      id="process"
+      id={id || "process"}
       ref={containerRef}
       className="py-32 bg-navy text-white overflow-hidden relative"
     >

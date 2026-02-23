@@ -88,7 +88,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-lg sm:text-xl text-navy/60 max-w-lg mb-12 leading-relaxed font-medium">
-            Join 100+ businesses who trust{" "}
+            Join 300+ businesses who trust{" "}
             <span className="text-navy font-bold underline decoration-emerald decoration-4 underline-offset-4">
               Ankul Tax Consultancy
             </span>{" "}
@@ -96,8 +96,10 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6">
-            <button
-              onClick={() => (window.location.hash = "#contact")}
+            <a
+              href="https://wa.me/919876543210?text=Hi! I'd like to book a free consultation for your tax and business services."
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-premium flex items-center justify-center gap-1 text-lg py-1 px-5 group w-full sm:w-auto"
             >
               <span>Book Free Consultation</span>
@@ -105,7 +107,7 @@ export function HeroSection() {
                 size={22}
                 className="group-hover:translate-x-2 transition-transform"
               />
-            </button>
+            </a>
 
             <div className="flex items-center gap-4 justify-center sm:justify-start">
               <div className="flex -space-x-3">
@@ -124,7 +126,7 @@ export function HeroSection() {
               </div>
               <div className="flex flex-col">
                 <span className="text-navy font-bold text-sm sm:text-base">
-                  100+ Happy Clients
+                  300+ Happy Clients
                 </span>
                 <span className="text-xs sm:text-sm text-navy/40 font-semibold italic">
                   5-star rating
@@ -151,7 +153,7 @@ export function HeroSection() {
             {/* Floating Badges */}
             <div className="floating-badge absolute top-6 left-6 sm:top-10 sm:left-10 p-4 sm:p-6 glass rounded-2xl sm:rounded-3xl shadow-premium">
               <span className="block text-2xl sm:text-4xl font-black text-navy leading-none">
-                3+
+                4+
               </span>
               <span className="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-emerald">
                 Years Experience

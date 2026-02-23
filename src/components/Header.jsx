@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {FaWhatsapp} from 'react-icons/fa'
+import { FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,13 +16,16 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Why Us", href: "#why-us" },
-    { label: "Process", href: "#process" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", path: "/" },
+    { label: "About", path: "/about" },
+    { label: "Services", path: "/#services" },
+    { label: "Why Us", path: "/why-us" },
+    { label: "Process", path: "/process" },
+    { label: "Contact", path: "/contact" },
   ];
+  const phoneNumber = "918853464808"; // with country code
+  const message =
+    "Hello Ankul Tax Consultancy, I visited your website and would like to discuss tax/GST services.";
 
   return (
     <>
@@ -54,21 +58,23 @@ export function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.path}
                   className="text-sm font-semibold text-navy/70 hover:text-emerald transition-colors relative group"
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald transition-all group-hover:w-full" />
-                </a>
+                </Link>
               ))}
             </nav>
 
             {/* Actions */}
             <div className="hidden lg:flex items-center gap-4">
               <a
-                href="https://wa.me/919956464808"
+                href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+                  message,
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 text-emerald hover:bg-emerald-light rounded-full transition-colors"
@@ -104,17 +110,17 @@ export function Header() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-white/95 backdrop-blur-xl pt-32 px-10">
+            <div className="absolute inset-0 bg-white/95 backdrop-blur-xl pt-24 px-6 md:px-10">
               <div className="flex flex-col gap-8">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
-                    href={link.href}
+                    to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-4xl font-bold text-navy hover:text-emerald transition-colors"
+                    className="mobile-menu-link text-3xl font-bold text-navy hover:text-emerald transition-colors py-3 block"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
                 <div className="h-px bg-navy/10 my-4" />
                 <button
